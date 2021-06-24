@@ -1,0 +1,534 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/24/2021 11:56:05 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-1MP7399"
+  DTS:CreatorName="DESKTOP-1MP7399\yaaco"
+  DTS:DTSID="{8DF7C3CA-94EC-49B6-A078-2BFE98931727}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1037"
+  DTS:ObjectName="IntegrationLeanage"
+  DTS:PackageType="5"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{B1FD0459-9EA0-434D-8FB5-BC9CC86A2F1D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19C3BB61-056D-42F1-B432-6C27A4D308E8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="cutofftime">
+      <DTS:VariableValue
+        DTS:DataType="7">5/24/2021 12:01:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7D712997-6B0E-417F-ADDC-DC3B98E3E1E1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="tablename">
+      <DTS:VariableValue
+        DTS:DataType="8">DIM_products</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F90C5845-F1C6-4A3A-94FF-91C028A90C81}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="tablename1">
+      <DTS:VariableValue
+        DTS:DataType="8">DIM_Employees</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B3611CE9-C4F1-4A7D-8304-32A53F8CE2BB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="tablename2">
+      <DTS:VariableValue
+        DTS:DataType="8">DIM_Orders</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{12265E3D-90F1-4457-9E65-3BABA8CC19C7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="tablename3">
+      <DTS:VariableValue
+        DTS:DataType="8">DIM_Customers</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DIM_Customers"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{ea6fb7a6-92e1-4bc9-8745-d86a3679b360}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DIM_Customers">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DIM_Customers\get cutofftime"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1243b6e9-7eed-42db-a61b-8ad151bf9843}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="get cutofftime"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06B6E173-F1FD-4311-8323-2A6A517CCE1A}"
+              SQLTask:SqlStatementSource="select max(cutoffTime) cutofftime&#xA;from&#xA;(select '01-01-1990' cutoffTime&#xA;union&#xA;select isnull(cutoffTime, '01-01-1990') cutoffTime&#xA;   from [integration].[Lineage]&#xA;   where tablename = ?  )t"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="cutofftime"
+                SQLTask:DtsVariableName="User::cutofftime" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::tablename3"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DIM_Customers\update cutofftime"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9d4f8e87-ce9b-4d8b-8ca5-6699a8dcc2bb}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update cutofftime"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06B6E173-F1FD-4311-8323-2A6A517CCE1A}"
+              SQLTask:SqlStatementSource="update [integration].[Lineage]&#xA;set cutoffTime = getdate()&#xA;where tablename = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::tablename3"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\DIM_Customers.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{f8285699-8103-4553-8bbc-debdf3191a65}"
+          DTS:From="Package\DIM_Customers\get cutofftime"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\DIM_Customers\update cutofftime" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DIM_Employees"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{97387f1c-a1c8-496e-b6be-afac043633cb}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DIM_Employees">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DIM_Employees\get cutofftime"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3c94d93c-abf4-44f1-af64-6820dd2f2315}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="get cutofftime"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06B6E173-F1FD-4311-8323-2A6A517CCE1A}"
+              SQLTask:SqlStatementSource="select max(cutoffTime) cutofftime&#xA;from&#xA;(select '01-01-1990' cutoffTime&#xA;union&#xA;select isnull(cutoffTime, '01-01-1990') cutoffTime&#xA;   from [integration].[Lineage]&#xA;   where tablename = ?  )t"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="cutofftime"
+                SQLTask:DtsVariableName="User::cutofftime" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::tablename1"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DIM_Employees\update cutofftime"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{85f9ba91-28f2-4eb9-bc2f-4d5f20517aba}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update cutofftime"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06B6E173-F1FD-4311-8323-2A6A517CCE1A}"
+              SQLTask:SqlStatementSource="update [integration].[Lineage]&#xA;set cutoffTime = getdate()&#xA;where tablename = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::tablename1"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\DIM_Employees.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{cc18dae9-5111-4871-b412-64d3f84260ee}"
+          DTS:From="Package\DIM_Employees\get cutofftime"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\DIM_Employees\update cutofftime" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DIM_Orders"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{381476bc-fff8-4892-84e4-5e48c0568e53}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DIM_Orders">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DIM_Orders\get cutofftime"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5ea28fe8-79c9-45b3-b32a-4a0e085c8350}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="get cutofftime"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06B6E173-F1FD-4311-8323-2A6A517CCE1A}"
+              SQLTask:SqlStatementSource="select max(cutoffTime) cutofftime&#xA;from&#xA;(select '01-01-1990' cutoffTime&#xA;union&#xA;select isnull(cutoffTime, '01-01-1990') cutoffTime&#xA;   from [integration].[Lineage]&#xA;   where tablename = ?  )t"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="cutofftime"
+                SQLTask:DtsVariableName="User::cutofftime" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::tablename2"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DIM_Orders\update cutofftime"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4eab3e04-5f00-4fd2-aa27-f134654c42f3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update cutofftime"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06B6E173-F1FD-4311-8323-2A6A517CCE1A}"
+              SQLTask:SqlStatementSource="update [integration].[Lineage]&#xA;set cutoffTime = getdate()&#xA;where tablename = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::tablename2"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\DIM_Orders.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{241e3802-371c-4031-bf9f-a3d5023af516}"
+          DTS:From="Package\DIM_Orders\get cutofftime"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\DIM_Orders\update cutofftime" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DIM_Products"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{ac8dce61-6577-4d93-8c25-7bca0efe046a}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DIM_Products">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DIM_Products\get cutofftime"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d6ddf28c-6e4f-4649-9f9b-93b1214fe2e5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="get cutofftime"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06B6E173-F1FD-4311-8323-2A6A517CCE1A}"
+              SQLTask:SqlStatementSource="select max(cutoffTime) cutofftime&#xA;from&#xA;(select '01-01-1990' cutoffTime&#xA;union&#xA;select isnull(cutoffTime, '01-01-1990') cutoffTime&#xA;   from [integration].[Lineage]&#xA;   where tablename = ?  )t"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="cutofftime"
+                SQLTask:DtsVariableName="User::cutofftime" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::tablename"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DIM_Products\update cutofftime"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{cdaecb6b-c2ff-4805-b90e-3b983225fa06}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="update cutofftime"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{06B6E173-F1FD-4311-8323-2A6A517CCE1A}"
+              SQLTask:SqlStatementSource="update [integration].[Lineage]&#xA;set cutoffTime = getdate()&#xA;where tablename = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::tablename"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\DIM_Products.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{9a5c4ab2-51bd-4711-afbe-4f5b5603c48e}"
+          DTS:From="Package\DIM_Products\get cutofftime"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\DIM_Products\update cutofftime" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\DIM_Employees\get cutofftime"
+          TopLeft="24.2666640175714,8.80000198364257" />
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\DIM_Employees\update cutofftime"
+          TopLeft="18.4333309160339,107.600002768834" />
+        <EdgeLayout
+          Id="Package\DIM_Employees.PrecedenceConstraints[Constraint]"
+          TopLeft="96.1499974668026,50.4000019836426">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.2000007851915"
+              Start="0,0"
+              End="0,49.7000007851915">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.7000007851915" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="199.2,162.4"
+          Size="199.2,205.6"
+          Id="Package\DIM_Employees"
+          TopLeft="362.499985595544,292.800002562205" />
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\DIM_Products\get cutofftime"
+          TopLeft="38.4333301213054,12.2666686778598" />
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\DIM_Products\update cutofftime"
+          TopLeft="32.5999970197678,111.066669463051" />
+        <EdgeLayout
+          Id="Package\DIM_Products.PrecedenceConstraints[Constraint]"
+          TopLeft="110.316663570537,53.8666686778598">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.2000007851916"
+              Start="0,0"
+              End="0,49.7000007851916">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.7000007851916" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="196.8,158.4"
+          Size="196.8,201.6"
+          Id="Package\DIM_Products"
+          TopLeft="113.333328829871,50.2666670661502" />
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\DIM_Orders\get cutofftime"
+          TopLeft="30.099997119109,13.1333353514141" />
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\DIM_Orders\update cutofftime"
+          TopLeft="24.2666640175714,111.933336136606" />
+        <EdgeLayout
+          Id="Package\DIM_Orders.PrecedenceConstraints[Constraint]"
+          TopLeft="101.98333056834,54.7333353514141">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.2000007851916"
+              Start="0,0"
+              End="0,49.7000007851916">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.7000007851916" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="188,164.8"
+          Size="188,208"
+          Id="Package\DIM_Orders"
+          TopLeft="353.333319293129,52.7333339876603" />
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\DIM_Customers\get cutofftime"
+          TopLeft="24.2666640175715,6.20000196297951" />
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\DIM_Customers\update cutofftime"
+          TopLeft="18.4333309160339,105.000002748171" />
+        <EdgeLayout
+          Id="Package\DIM_Customers.PrecedenceConstraints[Constraint]"
+          TopLeft="96.1499974668028,47.8000019629795">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.2000007851916"
+              Start="0,0"
+              End="0,49.7000007851916">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.7000007851916" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="208.8,162.4"
+          Size="208.8,205.6"
+          Id="Package\DIM_Customers"
+          TopLeft="111.666662229432,287.60000252088" />
+        <AnnotationLayout
+          Text="שליפת התאריך האחרון הכנסה למשתנה&#xA;&#xA;op שליפה מטבלת&#xA;טעינה&#xA;עדכון התאריך האחרון"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="129.6,152"
+          Id="ad9b7c76-8335-46de-91e7-39f0aa6b4c0f"
+          TopLeft="664.999973575275,45.8000005992254" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
